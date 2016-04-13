@@ -6,9 +6,20 @@
 
 易企秀成立一年多的时间里，虽然代码并不是最完美的，仍然有很多抄袭者、卖代码者，不断的侵害我们辛辛苦苦的知识产权。我们想与其这样，不如我们开放代码，与同行们一起探索和成长。
 
+如果想先睹为快，可以先clone以下仓库得到
+```
+git clone https://github.com/eqxiu/mini-eqxiu.git
+```
+
+
 废话少说，先上第一步：
 
 ## step-0 搭建react环境
+
+*运行以下命令得到step-0的代码：*
+```
+git checkout -f step-0
+```
 
 建立一个npm project
 ```javascript
@@ -17,7 +28,7 @@ cd mini-eqxiu
 npm init -y
 ```
 
-下面我们需要一个index.html，放在dist目录下
+建立一个index.html，放在dist目录下
 ```html
 <!DOCTYPE html>
 <html>
@@ -28,14 +39,14 @@ npm init -y
 </html>
 ```
 
-index.html只包含了一个<div>将来用于插入我们的app，此外引入了bundle.js
+index.html只包含了一个div将来用于插入我们的app，此外引入了bundle.js
 
-为了测试，我们写一个index.js放到src目录下，并且输出一个log便于测试
+接着我们写一个index.js放到src目录下，并且输出一个log便于测试
 ```javascript
 console.log('I am alive');
 ```
 
-接下来，安装webpack和webpack-dev-server，用来打包和调试程序
+安装webpack和webpack-dev-server，用来打包和调试程序
 ```
 npm install --save-dev webpack webpack-dev-server
 ```
@@ -62,12 +73,12 @@ module.exports = {
 webpack
 ```
 
-此外你也可以启动server来查看效果，运行下面的命令后打开http://localhost:8080，再打开debug工具，刚才的那句I am alive应该打印出来了
+你也可以启动server来查看效果，运行下面的命令后打开http://localhost:8080，再打开debug工具，刚才的那句I am alive应该打印出来了
 ```
 webpack-dev-server
 ```
 
-接下来，为了使用es6和react jsx，我们还要安装以下包
+接下来，为了使用es6和react jsx，我们还要安装以下babel包
 ```
 npm install --save-dev babel-core babel-loader babel-preset-es2015 babel-preset-react
 ```
@@ -81,11 +92,7 @@ npm install --save-dev babel-core babel-loader babel-preset-es2015 babel-preset-
 
 同样在webpack的配置文件中，我们也要添加Babel的支持
 ```javascript
-module.exports = {
-  entry: [
-    './src/index.js'
-  ],
-  module: {
+ module: {
     loaders: [{
       test: /\.jsx?$/,
       exclude: /node_modules/,
@@ -95,15 +102,6 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
-  output: {
-    path: __dirname + '/dist',
-    publicPath: '/',
-    filename: 'bundle.js'
-  },
-  devServer: {
-    contentBase: './dist'
-  }
-};
 ```
 
 最后，安装react相关的包
@@ -116,7 +114,7 @@ npm install --save react react-dom
 npm install --save-dev react-hot-loader
 ```
 
-为了实现它还需要同步修改webpack配置文件，加入hot-loader功能。step-0的最后，配置文件如下：
+为了实现它还需要同步修改webpack配置文件，加入hot-loader功能。step-0的最后，完整的webpack配置文件如下：
 ```javascript
 var webpack = require('webpack');
 
@@ -151,4 +149,6 @@ module.exports = {
 };
 ```
 
-至此环境搭建完成，现在的目录结构应为：
+至此最简单的react开发环境已经建立好了。
+
+在step-1我们将用react建立UI组件，显示出一段文本和一张图片
