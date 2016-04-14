@@ -19,7 +19,6 @@ export default React.createClass({
     for(var key in styles) {
     	dom.style[key] = styles[key];
     }
-    console.log(dom);
   },
   render: function() {
     return <div className="element">
