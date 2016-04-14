@@ -1,28 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Router, Route, hashHistory} from 'react-router';
+import App from './App';
 import Scene from './components/Scene';
+import Editor from './editor/Editor';
 
-const mockdata = [
-    {
-      "id": 437340633,
-      "elements": [
-        {
-          "content": "点击此处进行编辑",
-          "id": 5231947155,
-          "type": 2
-        },
-        {
-          "id": 8702727303,
-          "properties": {
-            "src": "http://ww1.sinaimg.cn/bmiddle/005GvWiUjw1eps93yk75ij30mi0de755.jpg",
-          },
-          "type": 4
-        }
-      ]
-    }
-];
+const routes = <Route component={App}>
+  <Route path="/" component={Scene} />
+  <Route path="/editor" component={Editor} />
+</Route>;
 
 ReactDOM.render(
-  <Scene def={mockdata} />,
+  <Router history={hashHistory}>{routes}</Router>,
   document.getElementById('app')
 );
