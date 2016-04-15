@@ -152,3 +152,146 @@ module.exports = {
 至此最简单的react开发环境已经建立好了。
 
 在step-1我们将用react建立UI组件，显示出一段文本和一张图片
+
+
+#step-1 显示一段文和一张图片
+
+*运行以下命令得到step-0的代码：*
+```
+git checkout -f step-0
+```
+
+易企秀的核心在于维护一个H5场景的描述文件，描述文件定义了一个H5场景中有多少页面、每个页面有多少组件、组件的样式和位置等等内容。编辑器生成描述文件，浏览器再解析描述文件展现成H5页面。
+
+在step-1我们将mock一个最简单的H5场景描述文件，里面只包含一页，页中有一段文本和一张图片：
+```json
+[
+    {
+      "id": 437340633,
+      "elements": [
+        {
+          "content": "点击此处进行编辑",
+          "id": 5231947155,
+          "type": 2
+        },
+        {
+          "id": 8702727303,
+          "properties": {
+            "src": "http://img3.imgtn.bdimg.com/it/u=182029021,3826628846&fm=21&gp=0.jpg",
+          },
+          "type": 4
+        }
+      ]
+    }
+]
+```
+
+第一步，先想想我们需要哪些组件。首先我们需要最外面的容器，代表一个场景；场景中有1-n个页面；页面中有0-n个组件：
+```
+└── Scene              场景
+    ├── Page           页
+    ├── Page           页
+    └── Page           页
+        ├── Element    组件
+        └── Element    组件
+
+
+```
+
+写第一个jsx，index.jsx，为了方便暂时把mock的数据写在这里。(现在可以删掉之前测试用的index.js了)。
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Scene from './components/Scene';
+
+const mockdata = [
+    {
+      "id": 437340633,
+      "elements": [
+        {
+          "content": "点击此处进行编辑",
+          "id": 5231947155,
+          "type": 2
+        },
+        {
+          "id": 8702727303,
+          "properties": {
+            "src": "http://img3.imgtn.bdimg.com/it/u=182029021,3826628846&fm=21&gp=0.jpg",
+          },
+          "type": 4
+        }
+      ]
+    }
+];
+
+ReactDOM.render(
+  <Scene def={mockdata} />,
+  document.getElementById('app')
+);
+```
+
+然后依次建立其它几个UI组件：
+```javascript
+import React from 'react';
+import Page from './Page';
+
+export default React.createClass({
+  getPages: function() {
+    return this.props.data || [];
+  },
+  render: function() {
+    return <div className="scene">
+      {this.props.data.map(entry =>
+        <Page key={entry.id} def={entry}/>
+      )}
+    </div>;
+  }
+});
+```
+
+```javascript
+import React from 'react';
+import Element from './Element';
+
+export default React.createClass({
+  render: function() {
+    return <div className="page">
+      {this.props.def.elements.map(entry =>
+        <Element key={entry.id} def={entry}/>
+      )}
+    </div>;
+  }
+});
+```
+
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Text from './Text';
+import Image from './Image';
+
+export default React.createClass({
+  getElementByType: function(elementDef) {
+  	switch (elementDef.type + '') {
+  		case '2':
+  			return <Text def={elementDef}/>;
+  		case '4':
+  			return <Image def={elementDef}/>;
+  		default:
+  	}
+  },
+  componentDidMount: function() {
+    var dom = ReactDOM.findDOMNode(this);
+    var styles = this.props.def.css;
+    for(var key in styles) {
+    	dom.style[key] = styles[key];
+    }
+    console.log(dom);
+  },
+  render: function() {
+    return <div className="element">
+    	{this.getElementByType(this.props.def)}
+    </div>;
+  }
+});
+```
