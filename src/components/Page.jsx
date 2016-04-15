@@ -4,8 +4,8 @@ import Element from './Element';
 export default React.createClass({
   render: function() {
     return <div className="page">
-      {this.props.def.elements.map(entry =>
-        <Element key={entry.id} def={entry}/>
+      {this.props.elements.map(entry =>
+        <Element key={entry.get('id')} def={entry}/>
       )}
     </div>;
   }

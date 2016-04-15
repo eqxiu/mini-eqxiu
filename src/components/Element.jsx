@@ -5,7 +5,7 @@ import Image from './Image';
 
 export default React.createClass({
   getElementByType: function(elementDef) {
-  	switch (elementDef.type + '') {
+  	switch (elementDef.get('type') + '') {
   		case '2':
   			return <Text def={elementDef}/>;
   		case '4':
