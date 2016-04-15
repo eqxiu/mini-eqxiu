@@ -7,12 +7,23 @@ function setState(state, newState) {
 
 function addText(state) {
   return state.updateIn(['pageList', 0, 'elements'], list => list.push(Map({
-  "content": "点击此处进行编辑",
-  "id": generateId(),
-  "type": 2
-})
+      "content": "点击此处进行编辑",
+      "id": generateId(),
+      "type": 2
+    })
 	));
 }
+
+function addImage(state) {
+  return state.updateIn(['pageList', 0, 'elements'], list => list.push(Map({
+      "id": generateId(),
+      "properties": Map({
+        "src": "http://ww1.sinaimg.cn/bmiddle/005GvWiUjw1eps93yk75ij30mi0de755.jpg",
+      }),
+      "type": 4
+    })
+  ));
+}          
 
 function addElement(state, elementType) {
   switch (elementType) {

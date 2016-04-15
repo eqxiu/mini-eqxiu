@@ -18,13 +18,7 @@ store.dispatch({
       "id": 437340633,
       "elements": [
         
-        {
-          "id": 8702727303,
-          "properties": {
-            "src": "http://ww1.sinaimg.cn/bmiddle/005GvWiUjw1eps93yk75ij30mi0de755.jpg",
-          },
-          "type": 4
-        }
+        
       ]
     }]
   }
