@@ -1,5 +1,6 @@
 import {Map, List} from 'immutable';
 import {generateId} from './utils/utils'
+import Comptype from './const/Comptype';
 
 function setState(state, newState) {
   return state.merge(newState);
@@ -27,9 +28,9 @@ function addImage(state) {
 
 function addElement(state, elementType) {
   switch (elementType) {
-    case 2: 
+    case Comptype.TEXT: 
       return addText(state);
-    case 4:
+    case Comptype.IMAGE:
       return addImage(state);
   }
   

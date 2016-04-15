@@ -22,8 +22,7 @@ store.dispatch({
 });
 
 const routes = <Route component={App}>
-  <Route path="/" component={Scene} />
-  <Route path="/editor" component={EditorContainer} />
+  <Route path="/" component={EditorContainer} />
 </Route>;
 
 ReactDOM.render(

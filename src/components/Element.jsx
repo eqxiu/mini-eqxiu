@@ -7,9 +7,9 @@ export default React.createClass({
   getElementByType: function(elementDef) {
     switch (elementDef.get('type') + '') {
       case '2':
-        return <Text def={elementDef}/>;
+        return <Text {...this.props}/>;
       case '4':
-        return <Image def={elementDef}/>;
+        return <Image {...this.props}/>;
       default:
     }
   },
