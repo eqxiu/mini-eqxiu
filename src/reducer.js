@@ -11,7 +11,7 @@ function addText(state) {
       "id": generateId(),
       "type": 2
     })
-	));
+  ));
 }
 
 function addImage(state) {
@@ -27,10 +27,10 @@ function addImage(state) {
 
 function addElement(state, elementType) {
   switch (elementType) {
-  	case 2: 
-  		return addText(state);
+    case 2: 
+      return addText(state);
     case 4:
-    	return addImage(state);
+      return addImage(state);
   }
   
 }
@@ -40,7 +40,7 @@ export default function(state = Map(), action) {
   case 'SET_STATE':
     return setState(state, action.state);
   case 'ADD_ELEMENT':
-  	return addElement(state, action.elementType);
+    return addElement(state, action.elementType);
   }
   return state;
 }

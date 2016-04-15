@@ -6,7 +6,7 @@ export default React.createClass({
   mixins: [PureRenderMixin],
   render: function() {
     return <div className="canva">
-    	<Scene pages={this.props.pages}/>
+      <Scene pages={this.props.pages}/>
     </div>;
   }
 });

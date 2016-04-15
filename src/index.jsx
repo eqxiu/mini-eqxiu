@@ -16,10 +16,7 @@ store.dispatch({
     pageList: 
     [{
       "id": 437340633,
-      "elements": [
-        
-        
-      ]
+      "elements": []
     }]
   }
 });
