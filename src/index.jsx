@@ -13,6 +13,10 @@ const store = createStore(reducer);
 store.dispatch({
   type: 'SET_STATE',
   state: {
+    activePageIndex: 0,
+    scene: {
+      pageMode: 0
+    },
     pageList: 
     [{
       "id": 437340633,

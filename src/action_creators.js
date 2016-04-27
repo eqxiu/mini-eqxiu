@@ -11,3 +11,16 @@ export function addElement(elementType) {
     elementType
   };
 }
+
+export function addPage(state) {
+  return {
+    type: 'ADD_PAGE'
+  };
+}
+
+export function setActivePage(pageIndex) {
+	return {
+		type: 'SET_ACTIVE_PAGE',
+		pageIndex: pageIndex
+	};
+}

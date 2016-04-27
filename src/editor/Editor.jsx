@@ -7,7 +7,7 @@ import {connect} from 'react-redux';
 export const Editor = React.createClass({
   render: function() {
     return <div className="editor">
-      <Canva pages={this.props.pageList}/>
+      <Canva {...this.props} />
       <Toolbar {...this.props} />
     </div>;
   }
@@ -15,7 +15,8 @@ export const Editor = React.createClass({
 
 function mapStateToProps(state) {
   return {
-    pageList: state.get('pageList')
+    pageList: state.get('pageList'),
+    scene: state.get('scene')
   };
 }
 

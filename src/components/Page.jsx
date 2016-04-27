@@ -1,12 +1,17 @@
 import React from 'react';
 import Element from './Element';
 
-export default React.createClass({
+import CSSModules from 'react-css-modules';
+import styles from '../style.css';
+
+const Page = React.createClass({
   render: function() {
-    return <div className="page">
+    return <div styleName='page'>
       {this.props.elements.map(entry =>
         <Element key={entry.get('id')} def={entry}/>
       )}
     </div>;
   }
 });
+
+export default CSSModules(Page, styles);

@@ -6,6 +6,7 @@ export default React.createClass({
     return <div className="toolbar">
       <button onClick={() => this.props.addElement(Comptype.TEXT)}>Text</button>
       <button onClick={() => this.props.addElement(Comptype.IMAGE)}>Image</button>
+      <button onClick={() => this.props.addPage()}>Add Page</button>
     </div>;
   }
 });
