@@ -1,28 +1,37 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Router, Route, hashHistory} from 'react-router';
+import App from './App';
 import Scene from './components/Scene';
+import {EditorContainer} from './editor/Editor';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
+import reducer from './reducer';
+import {setState} from './action_creators';
 
-const mockdata = [
-    {
+const store = createStore(reducer);
+store.dispatch({
+  type: 'SET_STATE',
+  state: {
+    activePageIndex: 0,
+    scene: {
+      pageMode: 0
+    },
+    pageList: 
+    [{
       "id": 437340633,
-      "elements": [
-        {
-          "content": "点击此处进行编辑",
-          "id": 5231947155,
-          "type": 2
-        },
-        {
-          "id": 8702727303,
-          "properties": {
-            "src": "http://ww1.sinaimg.cn/bmiddle/005GvWiUjw1eps93yk75ij30mi0de755.jpg",
-          },
-          "type": 4
-        }
-      ]
-    }
-];
+      "elements": []
+    }]
+  }
+});
+
+const routes = <Route component={App}>
+  <Route path="/" component={EditorContainer} />
+</Route>;
 
 ReactDOM.render(
-  <Scene def={mockdata} />,
+  <Provider store={store}>
+    <Router history={hashHistory}>{routes}</Router>
+  </Provider>,
   document.getElementById('app')
 );

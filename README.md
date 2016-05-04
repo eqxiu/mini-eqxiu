@@ -199,6 +199,7 @@ git checkout -f step-0
 ```
 
 写第一个jsx，index.jsx，为了方便暂时把mock的数据写在这里。(现在可以删掉之前测试用的index.js了)。
+src/components/index.jsx
 ```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -231,6 +232,7 @@ ReactDOM.render(
 ```
 
 然后依次建立其它几个UI组件：
+src/components/Scene.jsx
 ```javascript
 import React from 'react';
 import Page from './Page';
@@ -249,6 +251,7 @@ export default React.createClass({
 });
 ```
 
+src/components/Page.jsx
 ```javascript
 import React from 'react';
 import Element from './Element';
@@ -264,6 +267,7 @@ export default React.createClass({
 });
 ```
 
+src/components/Element.jsx
 ```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -295,3 +299,4 @@ export default React.createClass({
   }
 });
 ```
+
